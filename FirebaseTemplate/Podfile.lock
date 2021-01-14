@@ -1,0 +1,26 @@
+PODS:
+  - CodableFirebase (0.2.1)
+  - SDWebImage (5.10.2):
+    - SDWebImage/Core (= 5.10.2)
+  - SDWebImage/Core (5.10.2)
+  - SDWebImageSwiftUI (1.5.0):
+    - SDWebImage (~> 5.7)
+
+DEPENDENCIES:
+  - CodableFirebase
+  - SDWebImageSwiftUI
+
+SPEC REPOS:
+  trunk:
+    - CodableFirebase
+    - SDWebImage
+    - SDWebImageSwiftUI
+
+SPEC CHECKSUMS:
+  CodableFirebase: 0bf201991eeec35eb9fcd987d271ea463cf34a80
+  SDWebImage: b969dcfc02c40a5da71eac0b03b8f1a0c794a86f
+  SDWebImageSwiftUI: 43687ffe232ddd33fe0659498b7ca9884fdd6b35
+
+PODFILE CHECKSUM: 946428402b8ea6e84e4f9097cb216a592a3acc04
+
+COCOAPODS: 1.10.0
