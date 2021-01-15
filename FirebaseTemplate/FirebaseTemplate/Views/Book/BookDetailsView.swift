@@ -46,7 +46,7 @@ struct BookDetailsView: View {
                         Button(action: {}, label: {
                             Image(systemName: "phone")
                             Text("Cell")
-                        }).padding(.horizontal, 100.0).padding(.vertical).background(Color(.blue)).cornerRadius(15)
+                        }).padding(.horizontal, 100.0).padding(.vertical).background(Color(#colorLiteral(red: 0.3879593015, green: 0.2983288169, blue: 0.7801620364, alpha: 1))).cornerRadius(15)
                         Spacer()
                     }
                 }.frame(width: 400, height: 500, alignment: .center).background(Color(#colorLiteral(red: 0.1106411591, green: 0.1057266816, blue: 0.1057857201, alpha: 1))).foregroundColor(.white)

@@ -15,7 +15,7 @@ struct AddNewBookView: View {
     @State private var inputImage: UIImage?
     @State var bookName = ""
     @State var BookPrice = ""
-    @State var theColor : Color = Color(#colorLiteral(red: 0.2317442894, green: 0.3535287976, blue: 0.6639168859, alpha: 1))
+    @State var theColor : Color = Color(#colorLiteral(red: 0.3879593015, green: 0.2983288169, blue: 0.7801620364, alpha: 1))
     
     var body: some View {
         VStack{

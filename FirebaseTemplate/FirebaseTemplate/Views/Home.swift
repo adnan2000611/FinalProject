@@ -39,80 +39,119 @@ struct Home: View {
     
     var body: some View {
         
-        ScrollView{
-            
-            HStack {
-                NavigationLink(destination: AllBookView(),
-                               label: {
-                                Text("Kuwait Unverstiy ")
-                               })
-
-                
+        VStack {
+            HStack(alignment: .center){
+                Image("joey").resizable().scaledToFit().frame(width: 55, height: 55, alignment: .center).clipShape(Circle())
                 Spacer()
-            }.padding()
-            ScrollView(.horizontal){
+                Image(systemName: "magnifyingglass").resizable().scaledToFit().frame(width: 25, height: 25, alignment: .center).foregroundColor(.gray)
+            }.padding(.vertical).padding(.top).frame(width: 400, height: 50, alignment: .center)
+            ScrollView{
                 
-                HStack{
-                    ForEach(booKEnv.books, id: \.self){ HBook in
-                        Button(action: {
-                            isPresenting.toggle()
-                            self.SelectedObject = HBook
-                        }, label: {
-                            WebImage(url: ImageUrl).resizable().frame(width: 100, height: 120, alignment: .center)
+                HStack {
+                    Text("Kuwait Unverstiy").font(.custom("Copperplate-Bold", size: 20))
+                    Spacer()
+                    NavigationLink(destination: AllBookView(),
+                                   label: {
+                                    Text("View All > ").foregroundColor(.gray)
+                                   })
+                }.padding(.horizontal)
+                ScrollView(.horizontal){
+                    
+                    HStack{
+                        ForEach(booKEnv.books, id: \.self){ HBook in
+                            Button(action: {
+                                isPresenting.toggle()
+                                self.SelectedObject = HBook
+                            }, label: {
+                                WebImage(url: ImageUrl).resizable().scaledToFit().frame(width: 180, height: 180, alignment: .center).cornerRadius(30)
+                            })
+                        }
+                    }
+                }.padding().onAppear(perform: booKEnv.loadBooks)
+                
+                
+                .background(EmptyView()).fullScreenCover(isPresented: $isPresenting) {
+                   
+                    BookDetailsView(thebook: SelectedObject)
+                    
+                 }
+                
+                HStack {
+                    Text("Gust Unverstiy").font(.custom("Copperplate-Bold", size: 20))
+                    Spacer()
+                    NavigationLink(destination: AllBookView(),
+                                   label: {
+                                    Text("View All > ").foregroundColor(.gray)
+                                   })
+                }.padding(.horizontal)
+                ScrollView(.horizontal){
+                    
+                    HStack{
+                        ForEach(booKEnv.books, id: \.self){ HBook in
+                            Button(action: {
+                                isPresenting.toggle()
+                                self.SelectedObject = HBook
+                            }, label: {
+                                WebImage(url: ImageUrl).resizable().scaledToFit().frame(width: 180, height: 180, alignment: .center).cornerRadius(30)
+                            })
+                        }
+                    }
+                }.padding().onAppear(perform: booKEnv.loadBooks)
+                
+                
+                .background(EmptyView()).fullScreenCover(isPresented: $isPresenting) {
+                   
+                    BookDetailsView(thebook: SelectedObject)
+                    
+                 }
+                HStack {
+                    Text("Aum Unverstiy").font(.custom("Copperplate-Bold", size: 20))
+                    Spacer()
+                    NavigationLink(destination: AllBookView(),
+                                   label: {
+                                    Text("View All > ").foregroundColor(.gray)
+                                   })
+                }.padding(.horizontal)
+                ScrollView(.horizontal){
+                    
+                    HStack{
+                        ForEach(booKEnv.books, id: \.self){ HBook in
+                            Button(action: {
+                                isPresenting.toggle()
+                                self.SelectedObject = HBook
+                            }, label: {
+                                WebImage(url: ImageUrl).resizable().scaledToFit().frame(width: 180, height: 180, alignment: .center).cornerRadius(30)
+                            })
+                        }
+                    }
+                }.padding().onAppear(perform: booKEnv.loadBooks)
+                
+                
+                .background(EmptyView()).fullScreenCover(isPresented: $isPresenting) {
+                   
+                    BookDetailsView(thebook: SelectedObject)
+                    
+                 }
+                    
+                /*NavigationLink(
+                    destination: BookDetailsView(),
+                    label: {
+                        Image("book1").resizable().frame(width: 100, height: 120, alignment: .center)
+                    })
+                    NavigationLink(
+                        destination: BookDetailsView(),
+                        label: {
+                            Image("book1").resizable().frame(width: 100, height: 120, alignment: .center)
                         })
-                    }
-                }
-            }.padding().onAppear(perform: booKEnv.loadBooks)
-            
-            
-            .background(EmptyView()).fullScreenCover(isPresented: $isPresenting) {
-               
-                BookDetailsView(thebook: SelectedObject)
-                
-             }
-            
-            HStack {
-                NavigationLink(destination: AllBookView(),
-                               label: {
-                                Text("Gulff Unverstiy ")
-                               })
-
-                
-                Spacer()
-            }.padding()
-            ScrollView(.horizontal){
-                HStack{
-                    ForEach(books, id: \.self){ HBook in
-                        
-                        NavigationLink(destination: BookDetailsView(thebook: HBook), label: {
-                            
-                            Image(HBook.image).resizable().frame(width: 100, height: 120, alignment: .center)
-                        
-                    })
+                    NavigationLink(
+                        destination: BookDetailsView(),
+                        label: {
+                            Image("book1").resizable().frame(width: 100, height: 120, alignment: .center)
+                        })*/
                     
-                    }
-                    
-                    
-                
-                }
-                
-            /*NavigationLink(
-                destination: BookDetailsView(),
-                label: {
-                    Image("book1").resizable().frame(width: 100, height: 120, alignment: .center)
-                })
-                NavigationLink(
-                    destination: BookDetailsView(),
-                    label: {
-                        Image("book1").resizable().frame(width: 100, height: 120, alignment: .center)
-                    })
-                NavigationLink(
-                    destination: BookDetailsView(),
-                    label: {
-                        Image("book1").resizable().frame(width: 100, height: 120, alignment: .center)
-                    })*/
-                }
-        }.padding().onAppear(perform: loadImage)
+            }.padding().frame(width: 450).onAppear(perform: loadImage)
+            
+        }
         }        /*NavigationView {
             Form {
                 Section(footer: Text("you are signed in!") , content: {
