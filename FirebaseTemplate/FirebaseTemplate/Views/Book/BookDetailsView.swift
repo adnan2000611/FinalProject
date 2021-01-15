@@ -7,11 +7,12 @@
 //
 
 import SwiftUI
-
+import SDWebImageSwiftUI
 struct BookDetailsView: View {
     @Environment(\.presentationMode) var presentatBook
     
     @State var thebook : Book
+    @State var ImageUrl : URL?
     var body: some View {
         
         ZStack{
@@ -25,7 +26,7 @@ struct BookDetailsView: View {
                     }
                     Spacer()
                 }.padding(.leading)
-                Image(thebook.name).resizable().scaledToFit().frame(width: 200, height: 200, alignment: .center)
+                WebImage(url :ImageUrl).resizable().scaledToFit().frame(width: 200, height: 200, alignment: .center)
                 Spacer()
                 VStack(alignment: .leading){
                     HStack {
@@ -57,14 +58,16 @@ struct BookDetailsView: View {
             
         }.onAppear(perform: {
             UITabBar.appearance().isHidden = true
+            thebook.loadImage { (url) in
+                self.ImageUrl = url
+        }
+        
         })
-        
-        
     }
 }
 
-struct BookDetailsView_Previews: PreviewProvider {
-    static var previews: some View {
-        BookDetailsView(thebook: Book(image: "", name: "", price: 30))
-    }
-}
+//struct BookDetailsView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        BookDetailsView(thebook: Book(image: "", name: "", price: 30))
+//    }
+//}

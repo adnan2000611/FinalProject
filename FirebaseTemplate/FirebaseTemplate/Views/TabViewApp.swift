@@ -12,7 +12,7 @@ struct TabViewApp: View {
     var body: some View {
         TabView {
             NavigationView{
-                Home(SelectedObject: Book(image: "book1", name: "", price: 0)).navigationBarTitle("Home", displayMode: .inline).environmentObject(BookEnv())
+                Home(SelectedObject: Book(image: "from app", name: "from app", price: 0)).navigationBarTitle("Home", displayMode: .inline).environmentObject(BookEnv())
                 
             }.tabItem {
                 Image(systemName: "house")

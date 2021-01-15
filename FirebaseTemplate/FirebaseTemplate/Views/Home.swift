@@ -25,17 +25,16 @@ struct Home: View {
     @State var isPresenting = false
     @State var SelectedObject : Book
     @State var ImageUrl : URL?
+    
     /*
      1- onTapGensure on book to togggle isPresentingSheet
      2- call .fullscreensheet
      */
     @EnvironmentObject var booKEnv: BookEnv
     
-    func loadImage(){
-        Networking.downlodImage(storagePath: "Image/Books/\(SelectedObject.image).png") { (url) in
-            self.ImageUrl = url
-        }
-    }
+    
+    
+    
     
     var body: some View {
         
@@ -59,15 +58,11 @@ struct Home: View {
                     
                     HStack{
                         ForEach(booKEnv.books, id: \.self){ HBook in
-                            Button(action: {
-                                isPresenting.toggle()
-                                self.SelectedObject = HBook
-                            }, label: {
-                                WebImage(url: ImageUrl).resizable().scaledToFit().frame(width: 180, height: 180, alignment: .center).cornerRadius(30)
-                            })
+                            
+                            BookRow(book : HBook, isPresenting: $isPresenting, selectedBook: $SelectedObject)
                         }
                     }
-                }.padding().onAppear(perform: booKEnv.loadBooks)
+                }.padding()
                 
                 
                 .background(EmptyView()).fullScreenCover(isPresented: $isPresenting) {
@@ -88,15 +83,11 @@ struct Home: View {
                     
                     HStack{
                         ForEach(booKEnv.books, id: \.self){ HBook in
-                            Button(action: {
-                                isPresenting.toggle()
-                                self.SelectedObject = HBook
-                            }, label: {
-                                WebImage(url: ImageUrl).resizable().scaledToFit().frame(width: 180, height: 180, alignment: .center).cornerRadius(30)
-                            })
+                            
+                            BookRow(book : HBook, isPresenting: $isPresenting, selectedBook: $SelectedObject)
                         }
                     }
-                }.padding().onAppear(perform: booKEnv.loadBooks)
+                }.padding()
                 
                 
                 .background(EmptyView()).fullScreenCover(isPresented: $isPresenting) {
@@ -116,12 +107,8 @@ struct Home: View {
                     
                     HStack{
                         ForEach(booKEnv.books, id: \.self){ HBook in
-                            Button(action: {
-                                isPresenting.toggle()
-                                self.SelectedObject = HBook
-                            }, label: {
-                                WebImage(url: ImageUrl).resizable().scaledToFit().frame(width: 180, height: 180, alignment: .center).cornerRadius(30)
-                            })
+                            
+                            BookRow(book : HBook, isPresenting: $isPresenting, selectedBook: $SelectedObject)
                         }
                     }
                 }.padding().onAppear(perform: booKEnv.loadBooks)
@@ -133,37 +120,18 @@ struct Home: View {
                     
                  }
                     
-                /*NavigationLink(
-                    destination: BookDetailsView(),
-                    label: {
-                        Image("book1").resizable().frame(width: 100, height: 120, alignment: .center)
-                    })
-                    NavigationLink(
-                        destination: BookDetailsView(),
-                        label: {
-                            Image("book1").resizable().frame(width: 100, height: 120, alignment: .center)
-                        })
-                    NavigationLink(
-                        destination: BookDetailsView(),
-                        label: {
-                            Image("book1").resizable().frame(width: 100, height: 120, alignment: .center)
-                        })*/
-                    
-            }.padding().frame(width: 450).onAppear(perform: loadImage)
+               
+            }.padding().frame(width: 450)
+            
+            
+        }.onAppear{
+            
+            booKEnv.loadBooks()
+            
+            
             
         }
-        }        /*NavigationView {
-            Form {
-                Section(footer: Text("you are signed in!") , content: {
-                    NavigationLink("Add a new item", destination: AddItem()
-                                    .environmentObject(itemsEnvironment))
-                    NavigationLink("List all items", destination: ListItems()
-                                    .environmentObject(itemsEnvironment))
-                })
-            }
-            .navigationTitle("Home")*/
-            //.navigationBarItems(trailing: SignOutButton(env: env))
-        
+        }
     }
 
 
@@ -173,3 +141,29 @@ struct Home: View {
 //            .environmentObject(FirebaseEnv())
 //    }
 //}
+
+struct BookRow: View {
+    let book : Book
+    @State var theBookImageUrl : URL?
+    @Binding var isPresenting : Bool
+    @Binding var selectedBook : Book
+    
+    var body: some View {
+        Button(action: {
+            selectedBook = book
+            isPresenting.toggle()
+            
+            
+        }, label: {
+            WebImage(url: theBookImageUrl)
+                .resizable()
+                .scaledToFit()
+                .frame(width: 180, height: 180, alignment: .center)
+                .cornerRadius(30)
+        }).onAppear(perform: {
+            book.loadImage { (url) in
+                self.theBookImageUrl = url
+            }
+        })
+    }
+}

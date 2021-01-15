@@ -68,6 +68,9 @@ struct AddNewBookView: View {
         })
         bookEnv.addBook(book: book)
         theColor = Color(#colorLiteral(red: 0, green: 0.8164184093, blue: 0, alpha: 1))
+        bookName = ""
+        BookPrice = ""
+        theColor = Color(#colorLiteral(red: 0.3879593015, green: 0.2983288169, blue: 0.7801620364, alpha: 1))
     }
     
     func loadImage() {
